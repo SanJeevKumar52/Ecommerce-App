@@ -1,0 +1,21 @@
+import React from 'react';
+import styles from './homepage.module.css';
+import SearchBar from '../../components/Home/SearchBar/SearchBar';
+import FilterSidebar from '../../components/Home/FilterSidebar/FilterSidebar';
+import ItemsContainer from '../../components/Home/ItemsContainer/ItemsContainer';
+
+const HomePage = () => {
+  return (
+    <div className={styles.homePageContainer}>
+      <div className={styles.sidebarContainer}>
+        <FilterSidebar />
+      </div>
+      <div className={styles.mainContentContainer}>
+        <SearchBar />
+        <ItemsContainer />
+      </div>
+    </div>
+  );
+}
+
+export default HomePage;

@@ -1,0 +1,27 @@
+/* Styles for the entire homepage container */
+.homePageContainer{
+ width: 100%;
+ height: 100vh;
+ display: flex;
+ border: 5px solid red;
+}
+
+/* Styles for the sidebar containing filters */
+.sidebarContainer {
+  /* Add your specific styles */
+}
+
+/* Styles for the main content area */
+.mainContentContainer {
+  /* Add your specific styles */
+}
+
+/* Styles for the search bar component */
+.searchBarContainer {
+  /* Add your specific styles */
+}
+
+/* Styles for the items container component */
+.itemsContainer {
+  /* Add your specific styles */
+}
