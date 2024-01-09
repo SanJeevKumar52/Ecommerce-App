@@ -11,8 +11,13 @@ const HomePage = () => {
         <FilterSidebar />
       </div>
       <div className={styles.mainContentContainer}>
+        <div className={styles.searchBarContainer} >
         <SearchBar />
+        </div>
+        <div className= {styles.itemsContainer}>
         <ItemsContainer />
+        </div>
+        
       </div>
     </div>
   );

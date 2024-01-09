@@ -1,8 +1,11 @@
-import React from 'react'
-
+import styles from './searchbar.module.css';
 const Searchbar = () => {
   return (
-    <div>Searchbar</div>
+    <div className={styles.SearchContainer}>
+      <form>
+        <input placeholder='Search By Name'/>
+      </form>
+    </div>
   )
 }
 
