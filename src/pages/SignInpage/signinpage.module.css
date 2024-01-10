@@ -1,0 +1,66 @@
+/* signinpage.module.css */
+.signInPageContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    border: none;
+  }
+  
+  .signInform {
+    width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 1rem;
+    
+    margin-bottom: 7rem;
+  }
+  
+  .signInform h2 {
+    margin-right: 11rem;
+    font-size: 2.5rem;
+    height: 1rem;
+  }
+  
+  .signInform label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .signInform input {
+    background: #f4f6f8;
+    border: 1px solid #7064e5;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #7064e5;
+    font-size: 1.2em;
+    padding: 12px;
+  }
+  
+  .signInform button {
+    background: #7064e5;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(0,0,0,.3);
+    color: #fff;
+    font-size: 1.2em!important;
+    padding: 0.4em!important;
+    width: 100%;
+  }
+  
+  .signInform button:hover {
+    background-color: #2980b9;
+  }
+  
+  .signInform p {
+    margin-top: 16px;
+    text-align: center;
+  }
+  
+  .signInform a {
+    color: #3498db;
+  }
+  
