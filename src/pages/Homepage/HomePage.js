@@ -17,7 +17,6 @@ const HomePage = () => {
         <div className= {styles.itemsContainer}>
         <ItemsContainer />
         </div>
-        
       </div>
     </div>
   );

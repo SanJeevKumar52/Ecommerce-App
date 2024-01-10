@@ -24,7 +24,7 @@ const FilterSidebar = () => {
             onChange={handlePriceChange}
             className={styles.PriceRange}
           />
-          <span>Category</span>
+          <span>CATEGORY</span>
         </div>
         
         <div className={styles.CategoryContent}>

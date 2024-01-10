@@ -1,5 +1,6 @@
 // Navbar.js
 import React, { useState } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 import styles from './navbar.module.css';
 import homeIcon from './icons/home.png';
 import cartIcon from './icons/cart.png';
@@ -9,13 +10,14 @@ import signinIcon from './icons/signin.png';
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
   return (
+    <>
     <div className={styles.Navbar}>
       <div className={styles.navbarContainer}>
         <div className={styles.navlogo}>BusyBuy</div>
@@ -23,42 +25,45 @@ const Navbar = () => {
           <span>&#9776;</span> {/* Unicode for hamburger icon */}
         </div>
         <div className={`${styles.navbarContent} ${showDropdown ? styles.show : ''}`}>
-          <div>
+          <NavLink to='/' className={styles.navNavlink}>
             <span>
               <img src={homeIcon} alt="Home Icon" />
             </span>
             <span>Home</span>
-          </div>
+          </NavLink>
           {!login ? (
 
-            <> <div>
+            <> <NavLink className={styles.navNavlink}>
               <span>
                 <img src={myorderIcon} alt="My Order Icon" />
               </span>
               <span>My Order</span>
-            </div><div>
+            </NavLink>
+            <NavLink className={styles.navNavlink}>
                 <span>
                   <img src={cartIcon} alt="Cart Icon" />
                 </span>
                 <span>Cart</span>
-              </div>
+              </NavLink>
 
-              <div>
+              <NavLink className={styles.navNavlink}>
                 <span>
                   <img src={logoutIcon} alt="Logout Icon" />
                 </span>
                 <span>Logout</span>
-              </div> </>) : (
-            <div>
+              </NavLink> </>) : (
+            <NavLink to='/signIn' className={styles.navNavlink}>
               <span>
                 <img src={signinIcon} alt="SignIn Icon" />
               </span>
               <span>SignIn</span>
-            </div>)}
+            </NavLink>)}
 
         </div>
       </div>
     </div>
+    <Outlet/>
+    </>
   );
 }
 
