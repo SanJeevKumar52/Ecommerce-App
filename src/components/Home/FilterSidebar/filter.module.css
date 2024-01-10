@@ -1,0 +1,61 @@
+.Sidebarcontainer {
+    width: 12.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+  
+    margin-left: 1rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-shadow: 3px 4px 10px 3px rgba(1, 21, 3, 0.2); /* Adjust values for your shadow */
+  }
+  
+
+.SidebarcontainerContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.CategoryContent {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-right: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.ContentRow {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+input[type="checkbox"] {
+    border-radius: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    width: 1rem;
+}
+
+.PriceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.PriceContainer label{
+    margin-left: 20px;
+    margin-bottom: 0;
+    font-size: large;
+    font-weight: bold;
+}
+
+.PriceRange {
+  width: 100%; 
+
+}

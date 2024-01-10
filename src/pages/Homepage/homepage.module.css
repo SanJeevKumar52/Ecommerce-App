@@ -3,15 +3,13 @@
  width: 100%;
  height: 100vh;
  display: flex;
- border: 5px solid red;
 }
-
 /* Styles for the sidebar containing filters */
 .sidebarContainer {
-  width: 20%;
-  height: 40%;
-  border: 3px solid brown;
-  margin-top: 10%;
+  width: 14rem;
+  height: 500px;
+  margin-top: 150px;
+  overflow-y: hidden;
 }
 
 /* Styles for the main content area */
@@ -33,5 +31,9 @@
 
 /* Styles for the items container component */
 .itemsContainer {
+  position: relative;
+  width: 100%;
+  height: auto;
+  border: 2px solid blue;
   
 }

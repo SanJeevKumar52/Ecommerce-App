@@ -9,7 +9,7 @@ import signinIcon from './icons/signin.png';
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [login,setLogin] = useState(false);
+  const [login, setLogin] = useState(false);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -29,31 +29,33 @@ const Navbar = () => {
             </span>
             <span>Home</span>
           </div>
-          {!login ? (<><div>
-            <span>
-              <img src={cartIcon} alt="Cart Icon" />
-            </span>
-            <span>Cart</span>
-          </div>
-          <div>
-            <span>
-              <img src={myorderIcon} alt="My Order Icon" />
-            </span>
-            <span>My Order</span>
-          </div>
-          <div>
-            <span>
-              <img src={logoutIcon} alt="Logout Icon" />
-            </span>
-            <span>Logout</span>
-          </div> </>):(
-          <div>
-            <span>
-              <img src={signinIcon} alt="SignIn Icon" />
-            </span>
-            <span>SignIn</span>
-          </div>)}
-          
+          {!login ? (
+
+            <> <div>
+              <span>
+                <img src={myorderIcon} alt="My Order Icon" />
+              </span>
+              <span>My Order</span>
+            </div><div>
+                <span>
+                  <img src={cartIcon} alt="Cart Icon" />
+                </span>
+                <span>Cart</span>
+              </div>
+
+              <div>
+                <span>
+                  <img src={logoutIcon} alt="Logout Icon" />
+                </span>
+                <span>Logout</span>
+              </div> </>) : (
+            <div>
+              <span>
+                <img src={signinIcon} alt="SignIn Icon" />
+              </span>
+              <span>SignIn</span>
+            </div>)}
+
         </div>
       </div>
     </div>
