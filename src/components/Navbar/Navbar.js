@@ -20,7 +20,7 @@ const Navbar = () => {
     <>
     <div className={styles.Navbar}>
       <div className={styles.navbarContainer}>
-        <div className={styles.navlogo}>BusyBuy</div>
+        <NavLink to='/' className={styles.navlogo}>BusyBuy</NavLink>
         <div className={styles.dropdownButton} onClick={toggleDropdown}>
           <span>&#9776;</span> {/* Unicode for hamburger icon */}
         </div>

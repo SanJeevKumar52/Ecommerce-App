@@ -12,7 +12,7 @@ const SignInpage = () => {
         <input type="password" id="password" name="password" placeholder="Enter Password" required />
         <button type="submit">Sign In</button>
         <p>
-          Don't have an account? <NavLink to="/signup">Sign Up</NavLink>
+          Don't have an account? <NavLink to="/signUp">Sign Up</NavLink>
         </p>
       </form>
     </div>
