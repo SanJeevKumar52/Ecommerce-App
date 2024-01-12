@@ -1,8 +1,15 @@
 import React from 'react'
-
+import { productitemContext } from '../../../productitemContext'
+import ItemCard from '../ItemCard/ItemCard';
 const ItemsContainer = () => {
+  console.log(productitemContext);
   return (
-    <div>ItemsContainer</div>
+    <>
+      <productitemContext.Provider>
+        <ItemCard />
+      </productitemContext.Provider>
+    </>
+
   )
 }
 
