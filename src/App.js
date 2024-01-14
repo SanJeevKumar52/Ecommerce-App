@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/Homepage/HomePage";
 import SignUppage from "./pages/SignUppage/SignUppage"
 import SignInpage from './pages/SignInpage/SignInpage'
+import CustomeitemContext from './productitemContext';
 function App() {
 
   const router = createBrowserRouter([
@@ -18,9 +19,9 @@ function App() {
     }, 
   ])
   return (
-    <>
+    <CustomeitemContext>
       <RouterProvider router={router} />
-    </>
+    </CustomeitemContext>
   );
 }
 

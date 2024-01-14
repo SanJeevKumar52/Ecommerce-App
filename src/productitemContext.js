@@ -1,3 +1,14 @@
 import { createContext } from "react";
 
-export const productitemContext = createContext();
+const productitemContext = createContext();
+
+function CustomeitemContext({children}) {
+    console.log(children);
+    return (
+        <productitemContext.Provider>
+            {children}
+        </productitemContext.Provider>
+    )
+}
+export {productitemContext};
+export default CustomeitemContext;
