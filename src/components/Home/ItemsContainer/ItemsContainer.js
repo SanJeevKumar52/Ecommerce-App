@@ -1,12 +1,16 @@
-import React from 'react'
-import { productitemContext } from '../../../productitemContext'
+import { useCustomhook } from '../../../productitemContext';
 import ItemCard from '../ItemCard/ItemCard';
 
 const ItemsContainer = () => {
-  console.log(productitemContext);
+  const { data } = useCustomhook();
+  console.log(data)
   return (
     <>
-        <ItemCard />
+    {
+       data.map((item)=>(
+        <ItemCard key={item.id} item={item} />
+       ))
+    }
     </>
 
   )

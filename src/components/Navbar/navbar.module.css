@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to right, rgb(15, 7, 7), rgb(229, 229, 234), rgb(186, 140, 148));
+  background: linear-gradient(to right, rgb(203, 165, 165), rgb(229, 229, 234), rgb(186, 140, 148));
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   padding: 0 20px;
   font-family: 'Helvetica', sans-serif;
