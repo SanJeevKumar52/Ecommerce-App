@@ -1,5 +1,5 @@
 import './App.css'
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/Homepage/HomePage";
 import SignUppage from "./pages/SignUppage/SignUppage"
@@ -10,18 +10,19 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Navbar />,
+      element: <CustomeitemContext > <Navbar /></CustomeitemContext >,
       children: [
-        {index:true, element: <HomePage /> },
-        {path: '/signUp', element: <SignUppage />},
-        {path:'/signIn',element:<SignInpage/>} 
+        { index: true, element: <CustomeitemContext ><HomePage /></CustomeitemContext> },
+        { path: '/signUp', element: <SignUppage /> },
+        { path: '/signIn', element: <SignInpage /> }
       ],
-    }, 
+    },
   ])
   return (
-    <CustomeitemContext>
+    <>
       <RouterProvider router={router} />
-    </CustomeitemContext>
+    </>
+
   );
 }
 

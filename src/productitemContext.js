@@ -1,11 +1,16 @@
-import { createContext } from "react";
-
+import { createContext,useContext,useState } from "react";
 const productitemContext = createContext();
 
+
+export const useCustomhook = () => {
+    const value = useContext(productitemContext);
+    return value;
+}
+
 function CustomeitemContext({children}) {
-    console.log(children);
+    const[count,setCount] = useState(2);
     return (
-        <productitemContext.Provider>
+        <productitemContext.Provider value={{count}}>
             {children}
         </productitemContext.Provider>
     )
