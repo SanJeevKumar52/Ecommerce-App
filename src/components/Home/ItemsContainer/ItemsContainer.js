@@ -2,12 +2,15 @@ import { useCustomhook } from '../../../productitemContext';
 import ItemCard from '../ItemCard/ItemCard';
 
 const ItemsContainer = () => {
-  const { data } = useCustomhook();
-  console.log(data)
+  const { data ,search} = useCustomhook();
   return (
     <>
     {
-       data.map((item)=>(
+       data .filter((item) => {
+        return search.toLocaleLowerCase() === ""
+          ? item
+          : item.name.toLocaleLowerCase().includes(search);
+      }).map((item)=>(
         <ItemCard key={item.id} item={item} />
        ))
     }

@@ -9,13 +9,16 @@ export const useCustomhook = () => {
 }
 
 function CustomeitemContext({ children }) {
-    const [count, setCount] = useState(2);
+
+   // for searched item by input
+   const [search, setSearch] = useState("");
     return (
         <productitemContext.Provider
             value={
                 {
-                    count,
-                    data
+                    data,
+                    search,
+                    setSearch
                 }}>
             {children}
         </productitemContext.Provider>

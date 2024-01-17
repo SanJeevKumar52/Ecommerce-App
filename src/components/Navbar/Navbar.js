@@ -10,7 +10,7 @@ import signinIcon from './icons/signin.png';
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [login, setLogin] = useState(0);
+  const [login, setLogin] = useState(true);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
