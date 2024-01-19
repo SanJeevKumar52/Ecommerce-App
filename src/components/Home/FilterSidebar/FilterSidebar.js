@@ -3,7 +3,7 @@ import styles from './filter.module.css';
 import { useCustomhook } from '../../../productitemContext';
 
 const FilterSidebar = () => {
-  const { price, handlePriceChange } = useCustomhook();
+  const { price, handlePriceChange, selectedCategories, handleCategoryChange  } = useCustomhook();
   return (
     <aside className={styles.Sidebarcontainer}>
       <h2>Filter</h2>
@@ -24,16 +24,39 @@ const FilterSidebar = () => {
 
         <div className={styles.CategoryContent}>
           <div className={styles.ContentRow}>
-            <input type="checkbox" id="mensCheckbox" name="mensCheckbox" />
+            <input type="checkbox"
+              id="mensCheckbox"
+              name="mensCheckbox"
+              checked={selectedCategories.includes('men')}
+              onChange={() => handleCategoryChange('men')} />
             <label htmlFor="mensCheckbox">Men's Clothing</label>
           </div>
           <div className={styles.ContentRow}>
-            <input type="checkbox" id="womensCheckbox" name="womensCheckbox" />
+            <input type="checkbox"
+              id="womensCheckbox"
+              name="womensCheckbox"
+              checked={selectedCategories.includes('women')}
+              onChange={() => handleCategoryChange('women')}
+            />
             <label htmlFor="womensCheckbox">Women's Clothing</label>
           </div>
           <div className={styles.ContentRow}>
-            <input type="checkbox" id="jewelryCheckbox" name="jewelryCheckbox" />
-            <label htmlFor="jewelryCheckbox">Jewelry</label>
+            <input type="checkbox"
+              id="electricCheckbox"
+              name="electricCheckbox"
+              checked={selectedCategories.includes('electric')}
+              onChange={() => handleCategoryChange('electric')}
+            />
+            <label htmlFor="electricCheckbox">electric</label>
+          </div>
+          <div className={styles.ContentRow}>
+            <input type="checkbox"
+              id="jewelleryCheckbox"
+              name="jewelleryCheckbox"
+              checked={selectedCategories.includes('jewellery')}
+              onChange={() => handleCategoryChange('jewellery')}
+            />
+            <label htmlFor="jewelleryCheckbox">jewellery</label>
           </div>
         </div>
       </form>

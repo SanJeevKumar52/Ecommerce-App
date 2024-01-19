@@ -5,7 +5,7 @@ export const data = [
     {
       id: "1",
       name: "Laptop Backpack with USB Charging Port | Multi functional Bagpack (Grey)",
-      image: "https://m.media-amazon.com/images/I/51rga1GR6rL.jpg",
+      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
       price: 1099,
       category: "men",
     },

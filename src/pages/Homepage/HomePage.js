@@ -3,12 +3,10 @@ import styles from './homepage.module.css';
 import SearchBar from '../../components/Home/SearchBar/SearchBar';
 import FilterSidebar from '../../components/Home/FilterSidebar/FilterSidebar';
 import ItemsContainer from '../../components/Home/ItemsContainer/ItemsContainer';
-import { useCustomhook } from '../../productitemContext';
-
 const HomePage = () => {
-  const{count} = useCustomhook();
-  console.log(count);
+
   return (
+  
     <div className={styles.homePageContainer}>
       <div className={styles.sidebarContainer}>
         <FilterSidebar />
@@ -22,6 +20,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
+    
   );
 }
 

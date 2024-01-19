@@ -13,10 +13,19 @@ function CustomeitemContext({ children }) {
     // for searched item by input
     const [search, setSearch] = useState("");
     const [price, setPrice] = useState('100000');
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
     const handlePriceChange = (event) => {
         setPrice(parseInt(event.target.value));
 
+    };
+
+    const handleCategoryChange = (category) => {
+        if (selectedCategories.includes(category)) {
+            setSelectedCategories(selectedCategories.filter(c => c !== category));
+        } else {
+            setSelectedCategories([...selectedCategories, category]);
+        }
     };
 
     return (
@@ -27,6 +36,8 @@ function CustomeitemContext({ children }) {
                     search,
                     setSearch,
                     price, setPrice, handlePriceChange,
+                    selectedCategories,
+                    handleCategoryChange,
     
                 }}>
             {children}
