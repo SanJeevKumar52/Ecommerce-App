@@ -1,5 +1,4 @@
 import styles from './searchbar.module.css';
-import { useState } from 'react';
 import { useCustomhook } from '../../../productitemContext';
 const Searchbar = () => {
 

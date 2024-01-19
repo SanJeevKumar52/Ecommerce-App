@@ -8,6 +8,7 @@ import myorderIcon from './icons/myorder.png';
 import logoutIcon from './icons/logout.png';
 import signinIcon from './icons/signin.png';
 
+
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [login, setLogin] = useState(true);
@@ -55,6 +56,7 @@ const Navbar = () => {
             <NavLink to='/signIn' className={styles.navNavlink}>
               <span>
                 <img src={signinIcon} alt="SignIn Icon" />
+                
               </span>
               <span>SignIn</span>
             </NavLink>)}

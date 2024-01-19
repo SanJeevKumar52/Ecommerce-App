@@ -10,15 +10,24 @@ export const useCustomhook = () => {
 
 function CustomeitemContext({ children }) {
 
-   // for searched item by input
-   const [search, setSearch] = useState("");
+    // for searched item by input
+    const [search, setSearch] = useState("");
+    const [price, setPrice] = useState('100000');
+
+    const handlePriceChange = (event) => {
+        setPrice(parseInt(event.target.value));
+
+    };
+
     return (
         <productitemContext.Provider
             value={
                 {
                     data,
                     search,
-                    setSearch
+                    setSearch,
+                    price, setPrice, handlePriceChange,
+    
                 }}>
             {children}
         </productitemContext.Provider>

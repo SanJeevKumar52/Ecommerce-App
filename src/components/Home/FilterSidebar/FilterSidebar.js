@@ -1,14 +1,9 @@
-// FilterSidebar.js
-import React, { useState } from 'react';
+
 import styles from './filter.module.css';
+import { useCustomhook } from '../../../productitemContext';
 
 const FilterSidebar = () => {
-  const [price, setPrice] = useState(20000);
-
-  const handlePriceChange = (event) => {
-    setPrice(parseInt(event.target.value));
-  };
-
+  const { price, handlePriceChange } = useCustomhook();
   return (
     <aside className={styles.Sidebarcontainer}>
       <h2>Filter</h2>
@@ -26,7 +21,7 @@ const FilterSidebar = () => {
           />
           <span>CATEGORY</span>
         </div>
-        
+
         <div className={styles.CategoryContent}>
           <div className={styles.ContentRow}>
             <input type="checkbox" id="mensCheckbox" name="mensCheckbox" />
