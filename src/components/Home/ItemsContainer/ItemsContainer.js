@@ -3,6 +3,7 @@ import ItemCard from '../ItemCard/ItemCard';
 
 const ItemsContainer = () => {
   const { data, search, price, selectedCategories } = useCustomhook();
+ 
   return (
     <>
       {
@@ -14,7 +15,8 @@ const ItemsContainer = () => {
           // filter on the basis of price range
           .filter((item) => {
             return item.price <= price;
-          }).filter((item) => (selectedCategories.length === 0 ? true : selectedCategories.includes(item.category)))
+          }) // Filtering items based on selected categories
+          .filter((item) => (selectedCategories.length === 0 ? true : selectedCategories.includes(item.category)))
           .map((item) => (
             <ItemCard key={item.id} item={item} />
           ))

@@ -58,7 +58,7 @@
 }
 
 /* Button styling inside the container */
-.btnContainer button {
+.addBtn {
     font-size: 1.7rem;
     padding: 0.75rem 1rem;
     transition: all 0.3s ease-in-out;
@@ -67,6 +67,12 @@
     border-radius: inherit;
     background-color: #2512d3;
     color: aliceblue;
+}
+.addBtn:hover{
+    background-color: initial;
+    border: 1px solid #7064e5;
+    color: #7064e5;
+    cursor: pointer;
 }
 /* Media query for small screens */
 /* @media only screen and (max-width: 700px) {

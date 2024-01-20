@@ -4,23 +4,30 @@ import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/Homepage/HomePage";
 import SignUppage from "./pages/SignUppage/SignUppage"
 import SignInpage from './pages/SignInpage/SignInpage'
+import MyOrder from './pages/MyOrder/MyOrder';
+import Cart from './pages/Cart/Cart';
 import CustomeitemContext from './productitemContext';
+import { CustomAuthContext } from './authContext';
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <CustomeitemContext > <Navbar /></CustomeitemContext >,
+      element: <CustomAuthContext><CustomeitemContext><Navbar /></CustomeitemContext></CustomAuthContext>,
       children: [
         { index: true, element: <CustomeitemContext ><HomePage /></CustomeitemContext> },
-        { path: '/signUp', element: <SignUppage /> },
-        { path: '/signIn', element: <SignInpage /> }
+        { path: '/signUp', element: <SignUppage />},
+        { path: '/signIn', element: <SignInpage /> },
+        { path: '/cart', element: <Cart /> },
+        { path: 'myorder', element: <MyOrder /> }
       ],
     },
   ])
   return (
-    <>
+    <>   
+    <CustomAuthContext>
       <RouterProvider router={router} />
+      </CustomAuthContext>
     </>
 
   );

@@ -6,7 +6,7 @@ import ItemsContainer from '../../components/Home/ItemsContainer/ItemsContainer'
 const HomePage = () => {
 
   return (
-  
+   
     <div className={styles.homePageContainer}>
       <div className={styles.sidebarContainer}>
         <FilterSidebar />
@@ -20,7 +20,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-    
+  
   );
 }
 

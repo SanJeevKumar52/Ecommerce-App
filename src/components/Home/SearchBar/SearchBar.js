@@ -2,7 +2,7 @@ import styles from './searchbar.module.css';
 import { useCustomhook } from '../../../productitemContext';
 const Searchbar = () => {
 
-  const{search,setSearch} = useCustomhook();
+  const{setSearch} = useCustomhook();
 
    
   return (

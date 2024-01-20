@@ -7,11 +7,11 @@ import cartIcon from './icons/cart.png';
 import myorderIcon from './icons/myorder.png';
 import logoutIcon from './icons/logout.png';
 import signinIcon from './icons/signin.png';
-
+import { useAuthValue } from '../../authContext';
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [login, setLogin] = useState(true);
+  const{isLoggedIn,signOut} = useAuthValue();
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -32,15 +32,15 @@ const Navbar = () => {
             </span>
             <span>Home</span>
           </NavLink>
-          {!login ? (
+          {isLoggedIn ? (
 
-            <> <NavLink className={styles.navNavlink} >
+            <> <NavLink to='/myorder' className={styles.navNavlink} >
               <span>
                 <img src={myorderIcon} alt="My Order Icon" />
               </span>
               <span>My Order</span>
             </NavLink>
-            <NavLink className={styles.navNavlink}>
+            <NavLink to='/cart' className={styles.navNavlink}>
                 <span>
                   <img src={cartIcon} alt="Cart Icon" />
                 </span>
@@ -51,7 +51,7 @@ const Navbar = () => {
                 <span>
                   <img src={logoutIcon} alt="Logout Icon" />
                 </span>
-                <span>Logout</span>
+                <span onClick={signOut}>Logout</span>
               </NavLink> </>) : (
             <NavLink to='/signIn' className={styles.navNavlink}>
               <span>

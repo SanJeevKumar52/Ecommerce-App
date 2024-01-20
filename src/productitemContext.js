@@ -9,7 +9,6 @@ export const useCustomhook = () => {
 }
 
 function CustomeitemContext({ children }) {
-
     // for searched item by input
     const [search, setSearch] = useState("");
     const [price, setPrice] = useState('100000');
@@ -21,12 +20,16 @@ function CustomeitemContext({ children }) {
     };
 
     const handleCategoryChange = (category) => {
+        // Check if the selectedCategories array already includes the given category
         if (selectedCategories.includes(category)) {
+            // If the category is already selected, remove it from the selectedCategories array
             setSelectedCategories(selectedCategories.filter(c => c !== category));
         } else {
+            // If the category is not selected, add it to the selectedCategories array
             setSelectedCategories([...selectedCategories, category]);
         }
     };
+    
 
     return (
         <productitemContext.Provider
