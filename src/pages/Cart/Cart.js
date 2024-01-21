@@ -1,7 +1,10 @@
 import styles from './cart.module.css'
+import CartCard from '../../components/Cart/CartCard'
 const Cart = () => {
   return (
-    <div>Cart</div>
+    <>
+    <CartCard/>
+    </>
   )
 }
 

@@ -13,10 +13,10 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <CustomAuthContext><CustomeitemContext><Navbar /></CustomeitemContext></CustomAuthContext>,
+      element: <Navbar />,
       children: [
-        { index: true, element: <CustomeitemContext ><HomePage /></CustomeitemContext> },
-        { path: '/signUp', element: <SignUppage />},
+        { index: true, element: <HomePage /> },
+        { path: '/signUp', element: <SignUppage /> },
         { path: '/signIn', element: <SignInpage /> },
         { path: '/cart', element: <Cart /> },
         { path: 'myorder', element: <MyOrder /> }
@@ -24,10 +24,14 @@ function App() {
     },
   ])
   return (
-    <>   
-    <CustomAuthContext>
-      <RouterProvider router={router} />
+    <>
+
+      <CustomAuthContext>
+        <CustomeitemContext>
+          <RouterProvider router={router} />
+        </CustomeitemContext>
       </CustomAuthContext>
+
     </>
 
   );

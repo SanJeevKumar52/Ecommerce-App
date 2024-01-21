@@ -28,6 +28,7 @@ const ItemCard = (props) => {
             {/* Button for adding the item to the cart */}
             <button
               className={styles.addBtn}
+              onClick={() => addToCart(props.item)}
             >
               Add to Cart
             </button>

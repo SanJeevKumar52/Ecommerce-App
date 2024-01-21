@@ -1,0 +1,101 @@
+/* single item container */
+.ItemcardContainer{
+    display: flex;
+    align-items: center;
+    height: 500px;
+    width: 28%;
+    margin: 2%;
+    padding: 5px;
+    flex-direction: column;
+    font-size: 1.3rem;
+    font-weight: 900;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 8px 0 rgba(64,77,148,.4);
+}
+
+
+/* image container of product */
+.imageContainer{
+    height: 65%;
+    width: 70%;
+}
+
+/* image within the container */
+.imageContainer img{
+    width: 100%;
+    height: 100%;
+}
+
+/* product description */
+.itemInfoContainer{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;  
+}
+
+.name{
+    text-align: left;
+    width: 100%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    height: 45%;
+}
+/* price of the product */
+.price{
+    color: #224957;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Container styling */
+.btnContainer {
+    width: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* Button styling inside the container */
+.addBtn {
+    font-size: 1.7rem;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    border: none;
+    border-radius: inherit;
+    background-color: #2512d3;
+    color: aliceblue;
+}
+.addBtn:hover{
+    background-color: initial;
+    border: 1px solid #7064e5;
+    color: #7064e5;
+    cursor: pointer;
+}
+/* Media query for small screens */
+/* @media only screen and (max-width: 700px) {
+    .ItemcardContainer {
+        width: 80%; 
+        margin: 2% 0; 
+        
+    }
+
+    .imageContainer {
+        width: 100%; 
+        height: 60%;
+    }
+
+    .itemInfoContainer {
+        height: 40%; 
+    }
+   
+
+    .btnContainer {
+        width: 90%; 
+
+    }
+} */
+
+

@@ -26,7 +26,7 @@ export const data = [
     },
     {
       id: "4",
-      name: "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) \u2013 Super Ultrawide Screen QLED ",
+      name: "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor \u2013 Super Ultrawide Screen QLED ",
       image: "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
       price: 39999,
       category: "electric",
@@ -100,7 +100,7 @@ export const data = [
     },
     {
       id: "14",
-      name: "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
+      name: "Lock and Love Women's Removable Hooded  Jacket",
       image: "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
       price: 2499,
       category: "women",
@@ -139,7 +139,7 @@ export const data = [
   
     {
       id: "19",
-      name: "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+      name: "John Hardy Women's Legends Naga Gold & Silver  Bracelet",
       image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
       price: 10999,
       category: "jewellery",
