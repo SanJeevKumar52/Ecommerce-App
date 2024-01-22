@@ -1,8 +1,9 @@
 import styles from './itemcard.module.css'
-
+import { useCustomhook } from '../../../productitemContext';
 const ItemCard = (props) => {
   // Destructuring the properties from 'props.item'
   const { name, image, price, category } = props.item;
+  const{addToCart} = useCustomhook();
 
   return (
     <>
