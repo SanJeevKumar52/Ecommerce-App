@@ -228,6 +228,40 @@ function CustomeitemContext({ children }) {
     toast.success("Added to your Cart!!");
   }
 
+  // function to remove all product from cart
+  async function clearCart() {
+    // if no item in cart then return with message
+    if (itemInCart === 0) {
+      toast.error("Nothing to remove in Cart!!");
+      return;
+    }
+
+    // empty cart array in database
+    const userRef = doc(db, "buybusy", userLoggedIn.id);
+    await updateDoc(userRef, {
+      cart: [],
+    });
+
+    // set item count and total amount
+    setTotal(0);
+    setItemInCart(0);
+    toast.success("Empty Cart!!");
+  }
+  // function to purchase all the items in cart
+  async function purchaseAll() {
+    // get current data from function
+    const currentDate = getDate();
+
+    // adding order to database
+    const userRef = doc(db, "buybusy", userLoggedIn.id);
+    await updateDoc(userRef, {
+      orders: arrayUnion({ date: currentDate, list: cart, amount: total }),
+    });
+
+    // empty cart
+    clearCart();
+  }
+
 
   return (
     <productitemContext.Provider
@@ -239,7 +273,8 @@ function CustomeitemContext({ children }) {
           price, setPrice, handlePriceChange,
           selectedCategories,
           handleCategoryChange, cart, addToCart, total, decreaseQuant, increaseQuant,
-          removeFromCart
+          removeFromCart,clearCart,
+          purchaseAll,myorders,
         }}>
       {children}
     </productitemContext.Provider>

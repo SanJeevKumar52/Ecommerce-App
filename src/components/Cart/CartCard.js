@@ -2,7 +2,7 @@ import styles from './cartcard.module.css';
 import { useCustomhook } from '../../productitemContext';
 const CartCard = (props) => {
     // product data from props
-  const { name, image, price, category, quantity } = props.product;
+  const { name, image, price } = props.product;
   const{removeFromCart} = useCustomhook();
     return (
         <>
