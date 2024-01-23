@@ -95,23 +95,23 @@ function CustomeitemContext({ children }) {
         // storing all the data in cart
         setCart(doc.data().cart);
         setMyOrders(doc.data().orders);
-  
+
         // Calculate total amount of products in cart
         let sum = 0;
         doc.data().cart.forEach((item) => {
           sum += item.price * item.quantity;
         });
-        
+
         // Update total and itemInCart after setting cart
         setTotal(sum);
         setItemInCart(doc.data().cart.length);
       });
-  
+
       // Cleanup function for unsubscribing from the snapshot listener
       return () => unsub();
     }
   }, [isLoggedIn]);
-  
+
   // to increase item's quantity
   async function increaseQuant(product) {
     // finding item's index in cart array
@@ -142,25 +142,25 @@ function CustomeitemContext({ children }) {
   async function decreaseQuant(product) {
     // finding item's index
     const index = cart.findIndex((item) => item.name === product.name);
-  
+
     // create a copy of the cart to avoid modifying state directly
     const updatedCart = [...cart];
-  
+
     // reduce total amount
     setTotal((prevTotal) => Number(prevTotal) - updatedCart[index].price);
-  
+
     // change quantity of product and update cart array
     if (updatedCart[index].quantity > 1) {
       updatedCart[index].quantity--;
     } else {
       updatedCart.splice(index, 1);
     }
-  
+
     // update cart and item Count
     setCart(updatedCart);
     setItemInCart(itemInCart - 1);
-    
-  
+
+
     // update cart in the Firebase database
     const userRef = doc(db, "buybusy", userLoggedIn.id);
     await updateDoc(userRef, {
@@ -168,38 +168,38 @@ function CustomeitemContext({ children }) {
     });
     console.log(total);
   }
-  
-  
+
+
 
   async function removeFromCart(product) {
     // finding item's index in cart array
     const index = cart.findIndex((item) => item.name === product.name);
-  
+
     // create a copy of the cart to avoid modifying state directly
     const updatedCart = [...cart];
-  
+
     // remove the product from the updated cart
     updatedCart.splice(index, 1);
-  
+
     // decrease itemCount and total amount
     setItemInCart(itemInCart - 1);
-  
+
     // update cart in useState
     setCart(updatedCart);
-  
+
     // update total using the functional form of setTotal
     setTotal((prevTotal) => Number(prevTotal - product.price));
-  
+
     // update cart in firebase database
     const userRef = doc(db, "buybusy", userLoggedIn.id);
     await updateDoc(userRef, {
       cart: updatedCart,
     });
-  
+
     toast.success("Removed from your Cart!!");
   }
-  
-  
+
+
   // function to add product to cart
   async function addToCart(product) {
     // check whether user is logged in or not
@@ -273,8 +273,8 @@ function CustomeitemContext({ children }) {
           price, setPrice, handlePriceChange,
           selectedCategories,
           handleCategoryChange, cart, addToCart, total, decreaseQuant, increaseQuant,
-          removeFromCart,clearCart,
-          purchaseAll,myorders,
+          removeFromCart, clearCart,
+          purchaseAll, myorders,
         }}>
       {children}
     </productitemContext.Provider>

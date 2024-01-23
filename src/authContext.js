@@ -1,33 +1,29 @@
-// react hooks
-import { createContext, useContext,useState ,useEffect} from "react";
-
-// firebase database
+// Import necessary modules and functions from React and Firebase
+import { createContext, useContext, useState, useEffect } from "react";
 import { db } from "./firebaseInit";
 import { collection, addDoc, onSnapshot } from "firebase/firestore";
 
-// toast notification
+// Import ToastContainer and toast for notification handling
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// create contextAPI for authentication
+// Create context API for authentication
 export const authContext = createContext();
 
-// custom context hook to return values
+// Custom context hook to retrieve context values
 export function useAuthValue() {
   const value = useContext(authContext);
   return value;
 }
 
-// custom context Provider
+// Custom context Provider for authentication
 export function CustomAuthContext({ children }) {
-  // list of all the users in database
+  // State variables for user-related information
   const [userList, setUserList] = useState([]);
-  // loggedIn user's status
   const [isLoggedIn, setLoggedIn] = useState(false);
-  // user who is logged in
   const [userLoggedIn, setUserLoggedIn] = useState(null);
 
-  // getting all the users from data base on first render of page
+  // Fetch all users from the database on initial page render
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "buybusy"), (snapShot) => {
       const users = snapShot.docs.map((doc) => {
@@ -40,22 +36,18 @@ export function CustomAuthContext({ children }) {
     });
   }, [isLoggedIn]);
 
-  // creating new user
+  // Function to create a new user
   async function createUser(data) {
-    console.log(data);
-    console.log('sanjeev');
-    // checking whether the email address already in use or not
+    // Check if the email address already exists
     const index = userList.findIndex((user) => user.email === data.email);
 
-    // if found email display notification
     if (index !== -1) {
-      toast.error(
-        "Email Address already exist, try With another email"
-      );
+      // Display error notification if email already exists
+      toast.error("Email Address already exists, try with another email");
       return;
     }
 
-    // if email not found create new user
+    // Create a new user in the database
     const docRef = await addDoc(collection(db, "buybusy"), {
       name: data.name,
       email: data.email,
@@ -63,64 +55,70 @@ export function CustomAuthContext({ children }) {
       cart: [],
       orders: [],
     });
+
+    // Display success notification for new user creation
     toast.success("New user Created, Please LogIn to Continue !!");
   }
-   
-  // sign IN user
+
+  // Function to sign in a user
   async function signIn(data) {
-    // finding user in database
+    // Find the user in the database
     const index = userList.findIndex((user) => user.email === data.email);
 
-    // if user not found show notification
     if (index === -1) {
+      // Display error notification if user not found
       toast.error("Email does not exist, Try again or SignUp Instead!!!");
       return false;
     }
 
-    // if email found in database then match password
+    // Match the password if the email is found
     if (userList[index].password === data.password) {
+      // Display success notification for successful sign-in
       toast.success("Sign In Successfully!!!");
-      // logging in user and storing its data in local variable
+
+      // Set login status, store user data, and generate user's login token
       setLoggedIn(true);
       setUserLoggedIn(userList[index]);
-      // generating user's login token and store user's data
       window.localStorage.setItem("token", true);
       window.localStorage.setItem("index", JSON.stringify(userList[index]));
+
       return true;
     } else {
-      // if password doesn't match in database
+      // Display error notification if password doesn't match
       toast.error("Wrong UserName/Password, Try Again");
       return false;
     }
   }
 
-   // signout function
-   function signOut() {
-    // removing user' data and token from local storage
+  // Function to sign out the user
+  function signOut() {
+    // Remove user data and token from local storage
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("index");
 
-    // set loggin status false
+    // Set login status to false and clear user data
     setLoggedIn(false);
-    // loggedin user's data
     setUserLoggedIn(null);
+
+    // Display success notification for sign-out
     toast.success("Sign Out Successfully!!!!");
   }
-  
+
+  // Return the context API with values
   return (
-    // context API with values
     <>
       <authContext.Provider
         value={{
-            createUser,
-            isLoggedIn,
-            setLoggedIn,
-            signIn,
-            userLoggedIn,
-            setUserLoggedIn,
-            signOut
+          createUser,
+          isLoggedIn,
+          setLoggedIn,
+          signIn,
+          userLoggedIn,
+          setUserLoggedIn,
+          signOut,
         }}
       >
+        {/* Display ToastContainer for notifications */}
         <ToastContainer />
         {children}
       </authContext.Provider>
