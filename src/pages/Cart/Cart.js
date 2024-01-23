@@ -7,7 +7,6 @@ const Cart = () => {
   // data for product from custom hook (product)
   const { cart ,total} = useCustomhook();
   const { userLoggedIn } = useAuthValue();
-  console.log(cart);
   return (
     <>
     <div className={styles.totalPrice}>

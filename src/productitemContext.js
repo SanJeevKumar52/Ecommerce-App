@@ -7,7 +7,6 @@ import {
   doc,
   arrayUnion,
   onSnapshot,
-  arrayRemove,
 } from "firebase/firestore";
 
 // toast notification
@@ -37,28 +36,28 @@ function CustomeitemContext({ children }) {
   const { isLoggedIn, userLoggedIn, setLoggedIn, setUserLoggedIn } =
     useAuthValue();
 
- // return date in yy/mm/dd format
- function getDate() {
-  // getting current date
-  const date = new Date();
-  // day
-  let day = date.getDate();
+  // return date in yy/mm/dd format
+  function getDate() {
+    // getting current date
+    const date = new Date();
+    // day
+    let day = date.getDate();
 
-  // month
-  let month = date.getMonth() + 1;
+    // month
+    let month = date.getMonth() + 1;
 
-  // year
-  let year = date.getFullYear();
+    // year
+    let year = date.getFullYear();
 
-  // yy/mm/dd format
-  if (day < 10) {
-    return `${year}-${month}-${0}${day}`;
+    // yy/mm/dd format
+    if (day < 10) {
+      return `${year}-${month}-${0}${day}`;
+    }
+    if (month < 10) {
+      return `${year}-${0}${month}-${day}`;
+    }
+    return `${year}-${month}-${day}`;
   }
-  if (month < 10) {
-    return `${year}-${0}${month}-${day}`;
-  }
-  return `${year}-${month}-${day}`;
-}
 
   const handlePriceChange = (event) => {
     setPrice(parseInt(event.target.value));
@@ -88,33 +87,99 @@ function CustomeitemContext({ children }) {
     }
   };
 
-  // getting real time update of user's cart
   useEffect(() => {
-    // check whether user is logged in or not
+    // check whether the user is logged in or not
     if (isLoggedIn) {
       // getting real-time update of data
       const unsub = onSnapshot(doc(db, "buybusy", userLoggedIn.id), (doc) => {
         // storing all the data in cart
         setCart(doc.data().cart);
         setMyOrders(doc.data().orders);
+  
+        // Calculate total amount of products in cart
+        let sum = 0;
+        doc.data().cart.forEach((item) => {
+          sum += item.price * item.quantity;
+        });
+        
+        // Update total and itemInCart after setting cart
+        setTotal(sum);
+        setItemInCart(doc.data().cart.length);
       });
-      // total amount of products in cart
-      let sum = 0;
-      cart.map((item) => Number((sum += item.price)));
-      setTotal(sum);
-      setItemInCart(cart.length);
+  
+      // Cleanup function for unsubscribing from the snapshot listener
+      return () => unsub();
     }
   }, [isLoggedIn]);
+  
   // to increase item's quantity
   async function increaseQuant(product) {
+    // finding item's index in cart array
+    const index = cart.findIndex((item) => item.name === product.name);
+
+    // create a copy of the cart to avoid modifying state directly
+    const updatedCart = [...cart];
+
+    // increase product quantity
+    updatedCart[index].quantity++;
+
+    // update cart in useState
+    setCart(updatedCart);
+
+    // update cart in firebase database
+    const userRef = doc(db, "buybusy", userLoggedIn.id);
+    await updateDoc(userRef, {
+      cart: updatedCart,
+    });
+
+    // increase itemCount and total amount
+    setItemInCart(itemInCart + 1);
+    // update total using the functional form of setTotal
+    setTotal(Number(total + cart[index].price));
+  }
+
+  // to decrease item's quantity
+  async function decreaseQuant(product) {
+    // finding item's index
+    const index = cart.findIndex((item) => item.name === product.name);
+  
+    // create a copy of the cart to avoid modifying state directly
+    const updatedCart = [...cart];
+  
+    // reduce total amount
+    setTotal((prevTotal) => Number(prevTotal) - updatedCart[index].price);
+  
+    // change quantity of product and update cart array
+    if (updatedCart[index].quantity > 1) {
+      updatedCart[index].quantity--;
+    } else {
+      updatedCart.splice(index, 1);
+    }
+  
+    // update cart and item Count
+    setCart(updatedCart);
+    setItemInCart(itemInCart - 1);
+    
+  
+    // update cart in the Firebase database
+    const userRef = doc(db, "buybusy", userLoggedIn.id);
+    await updateDoc(userRef, {
+      cart: updatedCart,
+    });
+    console.log(total);
+  }
+  
+  
+
+  async function removeFromCart(product) {
     // finding item's index in cart array
     const index = cart.findIndex((item) => item.name === product.name);
   
     // create a copy of the cart to avoid modifying state directly
     const updatedCart = [...cart];
-    
-    // increase product quantity
-    updatedCart[index].quantity++;
+  
+    // remove the product from the updated cart
+    updatedCart.splice(index, 1);
   
     // update cart in useState
     setCart(updatedCart);
@@ -125,36 +190,14 @@ function CustomeitemContext({ children }) {
       cart: updatedCart,
     });
   
-    // increase itemCount and total amount
-    setItemInCart(itemInCart + 1);
+    // decrease itemCount and total amount
+    setItemInCart(itemInCart - 1);
     // update total using the functional form of setTotal
-  setTotal(prevTotal => prevTotal + updatedCart[index].price);
+    setTotal(Number(total - product.price));
+  
+    toast.success("Removed from your Cart!!");
   }
   
-  // to decrease item's quantity
-  async function decreaseQuant(product) {
-    // finding item's index
-    const index = cart.findIndex((item) => item.name === product.name);
-    // reduce total amount
-    setTotal(Number(total - cart[index].price));
-
-    // change quantity of product and update cart array
-    if (cart[index].quantity > 1) {
-      cart[index].quantity--;
-    } else {
-      cart.splice(index, 1);
-    }
-
-    // update cart and item Count
-    setCart(cart);
-    setItemInCart(itemInCart - 1);
-
-    // update cart in array
-    const userRef = doc(db, "buybusy", userLoggedIn.id);
-    await updateDoc(userRef, {
-      cart: cart,
-    });
-  }
   // function to add product to cart
   async function addToCart(product) {
     // check whether user is logged in or not
@@ -162,7 +205,7 @@ function CustomeitemContext({ children }) {
       toast.error("Please first Login !!!");
       return;
     }
-  
+
     // checking whether the product already in the cart
     const index = cart.findIndex((item) => item.name === product.name);
     if (index !== -1) {
@@ -171,7 +214,7 @@ function CustomeitemContext({ children }) {
       toast.success("Product Quantity Increased!!");
       return;
     }
-  
+
     // add product to the cart of loggedIn user
     const userRef = doc(db, "buybusy", userLoggedIn.id);
     await updateDoc(userRef, {
@@ -182,7 +225,7 @@ function CustomeitemContext({ children }) {
     setItemInCart(itemInCart + 1);
     toast.success("Added to your Cart!!");
   }
-  
+
 
   return (
     <productitemContext.Provider
@@ -195,7 +238,6 @@ function CustomeitemContext({ children }) {
           selectedCategories,
           handleCategoryChange, cart, addToCart, total, decreaseQuant, increaseQuant,
           removeFromCart
-
         }}>
       {children}
     </productitemContext.Provider>
