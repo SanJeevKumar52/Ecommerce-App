@@ -39,6 +39,5 @@ This ecommerce website uses Firebase for the backend. You need to set up a Fireb
 Visit the Firebase Console and create a new project.
 In the project settings, find and copy your Firebase project configuration.
 
-See the section about (https://github.com/SanJeevKumar52/Ecommerce-App) for more information.
 
 
