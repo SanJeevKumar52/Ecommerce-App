@@ -155,21 +155,6 @@ function CustomeitemContext({ children }) {
       cart: cart,
     });
   }
-
-  // remove a single product from cart
-  async function removeFromCart(product) {
-    // update database
-    const userRef = doc(db, "buybusy", userLoggedIn.id);
-    await updateDoc(userRef, {
-      cart: arrayRemove(product),
-    });
-    // reduce item count and total amount
-    setTotal(Number(total - product.quantity * product.price));
-    setItemInCart(itemInCart - product.quantity);
-    toast.success("Removed from Cart!!");
-  }
-
-
   // function to add product to cart
   async function addToCart(product) {
     // check whether user is logged in or not
