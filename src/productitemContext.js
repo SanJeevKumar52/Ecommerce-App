@@ -181,8 +181,14 @@ function CustomeitemContext({ children }) {
     // remove the product from the updated cart
     updatedCart.splice(index, 1);
   
+    // decrease itemCount and total amount
+    setItemInCart(itemInCart - 1);
+  
     // update cart in useState
     setCart(updatedCart);
+  
+    // update total using the functional form of setTotal
+    setTotal((prevTotal) => Number(prevTotal - product.price));
   
     // update cart in firebase database
     const userRef = doc(db, "buybusy", userLoggedIn.id);
@@ -190,13 +196,9 @@ function CustomeitemContext({ children }) {
       cart: updatedCart,
     });
   
-    // decrease itemCount and total amount
-    setItemInCart(itemInCart - 1);
-    // update total using the functional form of setTotal
-    setTotal(Number(total - product.price));
-  
     toast.success("Removed from your Cart!!");
   }
+  
   
   // function to add product to cart
   async function addToCart(product) {
